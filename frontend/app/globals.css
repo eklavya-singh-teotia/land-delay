@@ -1,0 +1,64 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --navy: #1F4E79;
+  --steel: #4A90A4;
+  --green: #2E7D32;
+  --yellow: #E8A33D;
+  --red: #C62828;
+  --bg: #F5F7FA;
+  --text: #1A1A1A;
+  --sidebar-bg: #FFFFFF;
+  --sidebar-width: 240px;
+  --border: #E2E8F0;
+  --muted: #6B7280;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar top bar styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 50;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar styling */
+.sidebar {
+  position: fixed;
+  top: 52px;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+  overflow-y: auto;
+}
+
+/* Main container layout */
+.main-content {
+  margin-top: 52px;
+  margin-left: var(--sidebar-width);
+  min-height: calc(100vh - 52px);
+  padding: 24px;
+}
