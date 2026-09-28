@@ -24,7 +24,7 @@ const NAV_ITEMS = [
   { name: "Projects", href: "/projects", icon: FolderKanban },
   { name: "New Project", href: "/new-project", icon: FilePlus2 },
   { name: "Zonal Analysis", href: "/area", icon: MapPin },
-  { name: "Delay Insights", href: "/delay-insights", icon: TrendingUp },
+  { name: "Delay Insights", href: "/trends", icon: TrendingUp },
   { name: "Compare", href: "/compare", icon: Scale },
   { name: "Map", href: "/map", icon: MapIcon },
   { name: "Alerts", href: "/alerts", icon: Bell },
