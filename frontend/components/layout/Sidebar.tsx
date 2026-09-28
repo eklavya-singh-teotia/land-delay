@@ -22,9 +22,9 @@ import { refreshPortfolioCache, resetUserData } from "@/lib/api";
 const NAV_ITEMS = [
   { name: "Portfolio", href: "/portfolio", icon: LayoutDashboard },
   { name: "Projects", href: "/projects", icon: FolderKanban },
-  { name: "New Project Assessment", href: "/new-project", icon: FilePlus2 },
-  { name: "Area of Interest", href: "/area", icon: MapPin },
-  { name: "Trends", href: "/trends", icon: TrendingUp },
+  { name: "New Project", href: "/new-project", icon: FilePlus2 },
+  { name: "Zonal Analysis", href: "/area", icon: MapPin },
+  { name: "Delay Insights", href: "/delay-insights", icon: TrendingUp },
   { name: "Compare", href: "/compare", icon: Scale },
   { name: "Map", href: "/map", icon: MapIcon },
   { name: "Alerts", href: "/alerts", icon: Bell },
