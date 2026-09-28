@@ -66,7 +66,7 @@ export function MapView() {
             </select>
           </div>
           <span className="text-[11px] text-[#6B7280]">
-            Leaflet OpenStreetMap server integration. Click any marker or line to view project details.
+            Leaflet OpenStreetMap server integration.
           </span>
         </div>
       </div>

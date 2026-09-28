@@ -1,41 +1,62 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# ==========================================
+# Python & Virtual Environments
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
+# ==========================================
+# Runtime & User Uploads
+# ==========================================
+data/generated/user/
+*.log
 
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (can opt-in for committing if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
+# ==========================================
+# Frontend (Next.js & Node)
+# ==========================================
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+out/
+frontend/out/
+build/
+frontend/build/
+.pnp
+.pnp.js
 next-env.d.ts
+frontend/next-env.d.ts
+*.tsbuildinfo
+.vercel/
+
+# ==========================================
+# Secrets & Environment Variables
+# ==========================================
+.env
+.env*.local
+.env.development
+.env.test
+.env.production
+*.pem
+*.key
+
+# ==========================================
+# OS & IDE Settings
+# ==========================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

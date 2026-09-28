@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { MapContainer, TileLayer, Marker, Polyline, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Polyline, Popup, Tooltip } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import L from "leaflet";
 import { useRouter } from "next/navigation";
@@ -99,49 +99,64 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
     <div className="h-[550px] w-full rounded-xl overflow-hidden border border-[#E2E8F0] shadow-2xs relative z-0">
       
       {/* Floating Risk Filter Bar */}
-      <div className="absolute top-3 left-14 z-[1000] bg-white/95 backdrop-blur-md px-3 py-2 rounded-lg border border-[#E2E8F0] shadow-md flex items-center space-x-2 text-[12px] font-medium">
-        <div className="flex items-center text-[#1F4E79] pr-3 border-r border-slate-200">
+      <div className="absolute top-3 left-14 z-[1000] bg-white/95 backdrop-blur-md px-3 py-2 rounded-lg border border-[#E2E8F0] shadow-md flex items-center space-x-2 text-[12px] font-medium flex-wrap gap-y-1">
+        <div className="flex items-center text-[#1F4E79] pr-2 border-r border-slate-200">
           <span className="font-bold">Filter Risk ({activeCount})</span>
         </div>
         
-        <button
-          onClick={() => setRiskFilter("ALL")}
-          className={`px-3 py-1 rounded-full transition-all ${
-            riskFilter === "ALL" ? "bg-slate-700 text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
-          }`}
+        {/* Select Dropdown Option */}
+        <select
+          value={riskFilter}
+          onChange={(e) => setRiskFilter(e.target.value as RiskFilterOption)}
+          className="bg-white border border-[#E2E8F0] text-[#1F4E79] font-bold text-[11px] rounded-md px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#1F4E79]"
         >
-          All Projects
-        </button>
-        
-        <button
-          onClick={() => setRiskFilter("HIGH")}
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
-            riskFilter === "HIGH" ? "bg-[#DC2626] text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
-          }`}
-        >
-          <span className={`w-2.5 h-2.5 rounded-full ${riskFilter === "HIGH" ? "bg-white" : "bg-[#DC2626]"}`} />
-          Red (&gt;0.70)
-        </button>
-        
-        <button
-          onClick={() => setRiskFilter("MODERATE")}
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
-            riskFilter === "MODERATE" ? "bg-[#D97706] text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
-          }`}
-        >
-          <span className={`w-2.5 h-2.5 rounded-full ${riskFilter === "MODERATE" ? "bg-white" : "bg-[#D97706]"}`} />
-          Yellow (0.40–0.70)
-        </button>
-        
-        <button
-          onClick={() => setRiskFilter("LOW")}
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
-            riskFilter === "LOW" ? "bg-[#16A34A] text-white shadow-sm" : "text-slate-600 hover:bg-slate-100"
-          }`}
-        >
-          <span className={`w-2.5 h-2.5 rounded-full ${riskFilter === "LOW" ? "bg-white" : "bg-[#16A34A]"}`} />
-          Green (&lt;0.40)
-        </button>
+          <option value="ALL">All Projects</option>
+          <option value="HIGH">Red Only (&gt;70%)</option>
+          <option value="MODERATE">Yellow Only (40%–70%)</option>
+          <option value="LOW">Green Only (&lt;40%)</option>
+        </select>
+
+        {/* Quick Filter Buttons */}
+        <div className="hidden sm:flex items-center space-x-1.5 pl-1">
+          <button
+            onClick={() => setRiskFilter("ALL")}
+            className={`px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
+              riskFilter === "ALL" ? "bg-slate-700 text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            All
+          </button>
+          
+          <button
+            onClick={() => setRiskFilter("HIGH")}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
+              riskFilter === "HIGH" ? "bg-[#DC2626] text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            <span className={`w-2 h-2 rounded-full ${riskFilter === "HIGH" ? "bg-white" : "bg-[#DC2626]"}`} />
+            Red
+          </button>
+          
+          <button
+            onClick={() => setRiskFilter("MODERATE")}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
+              riskFilter === "MODERATE" ? "bg-[#D97706] text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            <span className={`w-2 h-2 rounded-full ${riskFilter === "MODERATE" ? "bg-white" : "bg-[#D97706]"}`} />
+            Yellow
+          </button>
+          
+          <button
+            onClick={() => setRiskFilter("LOW")}
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
+              riskFilter === "LOW" ? "bg-[#16A34A] text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
+            }`}
+          >
+            <span className={`w-2 h-2 rounded-full ${riskFilter === "LOW" ? "bg-white" : "bg-[#16A34A]"}`} />
+            Green
+          </button>
+        </div>
       </div>
 
       {/* Floating Tile Switcher */}
@@ -197,13 +212,24 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
                 click: () => router.push(`/projects?id=${encodeURIComponent(p.project_id)}`),
               }}
             >
+              <Tooltip direction="top" opacity={1} sticky>
+                <div className="text-xs space-y-1 p-1">
+                  <strong className="text-[#1F4E79] font-bold text-sm block">{p.project_id}</strong>
+                  <div>Type: {p.project_type} (Corridor)</div>
+                  <div>District: {p.district}</div>
+                  <div className="flex items-center gap-1.5 pt-1">
+                    <span>Avg Risk: <strong>{(avgRisk * 100).toFixed(0)}%</strong></span>
+                    <RiskBadge level={getRiskLevel(avgRisk)} />
+                  </div>
+                </div>
+              </Tooltip>
               <Popup>
                 <div className="text-xs space-y-1 p-1">
                   <strong className="text-[#1F4E79] font-bold text-sm block">{p.project_id}</strong>
                   <div>Type: {p.project_type} (Corridor)</div>
                   <div>State: {p.state}</div>
                   <div className="flex items-center gap-1.5 pt-1">
-                    <span>Avg Risk: <strong>{avgRisk.toFixed(2)}</strong></span>
+                    <span>Avg Risk: <strong>{(avgRisk * 100).toFixed(0)}%</strong></span>
                     <RiskBadge level={getRiskLevel(avgRisk)} />
                   </div>
                 </div>
@@ -229,13 +255,24 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
                   click: () => router.push(`/projects?id=${encodeURIComponent(p.project_id)}`),
                 }}
               >
+                <Tooltip direction="top" opacity={1} sticky>
+                  <div className="text-xs space-y-1 p-1">
+                    <strong className="text-[#1F4E79] font-bold text-sm block">{p.project_id}</strong>
+                    <div>Type: {p.project_type} (Point)</div>
+                    <div>District: {p.district}</div>
+                    <div className="flex items-center gap-1.5 pt-1">
+                      <span>Avg Risk: <strong>{(avgRisk * 100).toFixed(0)}%</strong></span>
+                      <RiskBadge level={getRiskLevel(avgRisk)} />
+                    </div>
+                  </div>
+                </Tooltip>
                 <Popup>
                   <div className="text-xs space-y-1 p-1">
                     <strong className="text-[#1F4E79] font-bold text-sm block">{p.project_id}</strong>
                     <div>Type: {p.project_type} (Point)</div>
                     <div>District: {p.district}</div>
                     <div className="flex items-center gap-1.5 pt-1">
-                      <span>Avg Risk: <strong>{avgRisk.toFixed(2)}</strong></span>
+                      <span>Avg Risk: <strong>{(avgRisk * 100).toFixed(0)}%</strong></span>
                       <RiskBadge level={getRiskLevel(avgRisk)} />
                     </div>
                   </div>

@@ -62,7 +62,7 @@ export function AreaView() {
     ? [
         { label: "Parcels in Area", value: areaData.kpis.parcels_in_area.toLocaleString(), color: "#1F4E79" },
         { label: "RED Parcels", value: areaData.kpis.red_count.toLocaleString(), color: "#C62828" },
-        { label: "Avg Risk Score", value: areaData.kpis.avg_risk.toFixed(2), color: "#4A90A4" },
+        { label: "Avg Risk Score", value: `${(areaData.kpis.avg_risk * 100).toFixed(0)}%`, color: "#4A90A4" },
         {
           label: "Avg Expected Overrun",
           value: `${areaData.kpis.avg_expected_overrun.toFixed(0)} d`,
@@ -202,10 +202,10 @@ export function AreaView() {
                           <td className="p-3">
                             <RiskBadge level={parcel.risk_level} />
                           </td>
-                          <td className="p-3 text-right font-mono font-bold">{parcel.risk_score.toFixed(3)}</td>
+                          <td className="p-3 text-right font-mono font-bold">{(parcel.risk_score * 100).toFixed(0)}%</td>
                           <td className="p-3 text-right font-mono">{parcel.expected_overrun_days.toFixed(0)} d</td>
                           <td className="p-3 text-[#1A1A1A]">{parcel.village}</td>
-                          <td className="p-3 text-center">{parcel.court_stay === 1 ? "⚠️ Yes" : "No"}</td>
+                          <td className="p-3 text-center">{parcel.court_stay === 1 ? "Yes" : "No"}</td>
                           <td className="p-3 capitalize">{parcel.compensation_status}</td>
                         </tr>
 

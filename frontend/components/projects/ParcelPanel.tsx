@@ -41,7 +41,7 @@ export function ParcelPanel({ parcelId }: { parcelId: string }) {
   const currentCompVal = compStatus !== undefined ? compStatus : "pending";
 
   const kpis = [
-    { label: "Risk Score", value: current.risk_score.toFixed(3), color: "#1F4E79" },
+    { label: "Risk Score", value: `${(current.risk_score * 100).toFixed(0)}%`, color: "#1F4E79" },
     {
       label: "Risk Level",
       value: current.risk_level,
@@ -70,6 +70,7 @@ export function ParcelPanel({ parcelId }: { parcelId: string }) {
         <span className="text-xs text-[#6B7280]">Parcel Details & What-If Simulator</span>
       </div>
 
+      {/* KPIs */}
       <KpiRow cards={kpis} />
 
       {/* Charts Row */}
@@ -85,10 +86,10 @@ export function ParcelPanel({ parcelId }: { parcelId: string }) {
         </h4>
         <ul className="space-y-1.5 text-xs text-[#1A1A1A]">
           {current.recommended_actions.map((act, i) => {
-            const badge = act.priority_label === "high" ? "🔴" : act.priority_label === "medium" ? "🟡" : "🟢";
+            const badgeColor = act.priority_label === "high" ? "bg-[#C62828]" : act.priority_label === "medium" ? "bg-[#E8A33D]" : "bg-[#2E7D32]";
             return (
               <li key={i} className="flex items-start gap-2">
-                <span>{badge}</span>
+                <span className={`text-[9px] font-bold text-white uppercase px-1.5 py-0.5 rounded ${badgeColor}`}>{act.priority_label}</span>
                 <span>
                   <strong className="text-[#1F4E79]">{act.factor}</strong> — {act.action}
                 </span>
@@ -101,7 +102,7 @@ export function ParcelPanel({ parcelId }: { parcelId: string }) {
       {/* What-if Simulator */}
       <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-2xs">
         <h4 className="text-xs font-bold text-[#1F4E79] uppercase tracking-wider mb-3">
-          ⚡ What-if Simulator
+          What-if Simulator
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
           <div>

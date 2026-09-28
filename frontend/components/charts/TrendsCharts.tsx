@@ -14,7 +14,7 @@ export function RiskByStateChart({ data }: { data: { state: string; avg_risk: nu
           <BarChart layout="vertical" data={data} margin={{ top: 5, right: 20, left: 30, bottom: 5 }}>
             <XAxis type="number" tick={{ fontSize: 11, fill: "#6B7280" }} />
             <YAxis type="category" dataKey="state" tick={{ fontSize: 11, fill: "#6B7280" }} />
-            <Tooltip formatter={(v: any) => [Number(v).toFixed(2), "Avg Risk"]} />
+            <Tooltip formatter={(v: any) => [`${(Number(v) * 100).toFixed(0)}%`, "Avg Risk"]} />
             <Bar dataKey="avg_risk" fill={COLORS.navy} radius={[0, 4, 4, 0]} />
           </BarChart>
         </ResponsiveContainer>
@@ -50,7 +50,7 @@ export function RiskByTypeChart({ data }: { data: { project_type: string; avg_ri
           <BarChart data={data} margin={{ top: 15, right: 10, left: -20, bottom: 0 }}>
             <XAxis dataKey="project_type" tick={{ fontSize: 11, fill: "#6B7280" }} />
             <YAxis tick={{ fontSize: 11, fill: "#6B7280" }} />
-            <Tooltip formatter={(v: any) => [Number(v).toFixed(2), "Avg Risk"]} />
+            <Tooltip formatter={(v: any) => [`${(Number(v) * 100).toFixed(0)}%`, "Avg Risk"]} />
             <Bar dataKey="avg_risk" fill={COLORS.orange} radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
@@ -68,7 +68,7 @@ export function TopDistrictsChart({ data }: { data: { district: string; avg_risk
           <BarChart layout="vertical" data={data} margin={{ top: 5, right: 20, left: 60, bottom: 5 }}>
             <XAxis type="number" tick={{ fontSize: 11, fill: "#6B7280" }} />
             <YAxis type="category" dataKey="district" tick={{ fontSize: 10, fill: "#6B7280" }} />
-            <Tooltip formatter={(v: any) => [Number(v).toFixed(2), "Avg Risk"]} />
+            <Tooltip formatter={(v: any) => [`${(Number(v) * 100).toFixed(0)}%`, "Avg Risk"]} />
             <Bar dataKey="avg_risk" fill={COLORS.purple} radius={[0, 4, 4, 0]} />
           </BarChart>
         </ResponsiveContainer>
@@ -139,7 +139,7 @@ export function HeatmapChart({ data }: { data: { district: string; stage: Stage;
                     className="p-2 font-mono text-[11px] font-bold transition-colors"
                     style={{ backgroundColor: bg, color: textColor }}
                   >
-                    {prob.toFixed(2)}
+                    {(prob * 100).toFixed(0)}%
                   </td>
                 );
               })}

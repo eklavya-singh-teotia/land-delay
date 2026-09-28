@@ -69,7 +69,12 @@ export function Sidebar() {
           Navigation
         </div>
 
-        {NAV_ITEMS.map((item) => {
+        {NAV_ITEMS.filter((item) => {
+          if (role === "Viewer") {
+            return ["/portfolio", "/projects", "/map"].includes(item.href);
+          }
+          return true;
+        }).map((item) => {
           const isActive = pathname === item.href || (item.href !== "/portfolio" && pathname.startsWith(item.href));
           const Icon = item.icon;
           return (

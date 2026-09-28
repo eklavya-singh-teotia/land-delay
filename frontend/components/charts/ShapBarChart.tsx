@@ -230,7 +230,7 @@ export function ShapBarChart({
                       <span>{info.label}</span>
 
                       <span className="font-mono text-[11px] font-bold text-[#C62828] bg-red-50 px-1.5 py-0.5 rounded">
-                        +{val.toFixed(2)} SHAP
+                        +{val.toFixed(2)} RISK IMPACT
                       </span>
                     </div>
 
@@ -268,7 +268,7 @@ export function ShapBarChart({
                         <span>{info.label}</span>
 
                         <span className="font-mono text-[11px] font-bold text-[#2E7D32] bg-emerald-50 px-1.5 py-0.5 rounded">
-                          {val.toFixed(2)} SHAP
+                          {val.toFixed(2)} RISK IMPACT
                         </span>
                       </div>
 

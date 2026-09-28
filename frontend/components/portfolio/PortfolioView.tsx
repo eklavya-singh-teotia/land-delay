@@ -83,7 +83,7 @@ export function PortfolioView() {
 
   const projectTable = Object.values(projectMap)
     .map((p) => {
-      const avg_risk = p.sum_risk / p.n_parcels;
+      const avg_risk = (p.sum_risk / p.n_parcels);
       const avg_overrun = p.sum_overrun / p.n_parcels;
       return {
         ...p,
@@ -100,8 +100,8 @@ export function PortfolioView() {
   const redCount = filteredData.filter((p) => p.risk_level === "RED").length;
   const yelCount = filteredData.filter((p) => p.risk_level === "YELLOW").length;
   const avgRisk = filteredData.length
-    ? (filteredData.reduce((acc, p) => acc + p.risk_score, 0) / filteredData.length).toFixed(2)
-    : "0.00";
+    ? ((filteredData.reduce((acc, p) => acc + p.risk_score, 0) / filteredData.length) * 100).toFixed(0) + "%"
+    : "0%";
 
   const kpis = [
     { label: "Projects", value: projectTable.length.toLocaleString(), color: "#1F4E79" },
@@ -253,7 +253,7 @@ export function PortfolioView() {
                   <td className="p-3 text-[#1A1A1A]">{row.district}</td>
                   <td className="p-3 text-right font-medium">{row.n_parcels}</td>
                   <td className="p-3 text-right font-mono font-bold text-[#1F4E79]">
-                    {row.avg_risk.toFixed(3)}
+                    {(row.avg_risk * 100).toFixed(0)}%
                   </td>
                   <td className="p-3 text-right font-bold text-[#C62828]">{row.red}</td>
                   <td className="p-3 text-right font-mono text-[#6B7280]">

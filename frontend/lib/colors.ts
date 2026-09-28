@@ -21,9 +21,9 @@ export const RISK_COLORS: Record<RiskLevel, string> = {
 };
 
 export const RISK_EMOJI: Record<RiskLevel, string> = {
-  RED: "🔴",
-  YELLOW: "🟡",
-  GREEN: "🟢",
+  RED: "",
+  YELLOW: "",
+  GREEN: "",
 };
 
 export function getRiskLevel(score: number): RiskLevel {

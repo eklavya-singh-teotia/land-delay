@@ -190,7 +190,7 @@ export function ProjectsView() {
                 color: "#1F4E79",
               },
               { label: "Parcels", value: projectData.kpis.n_parcels.toLocaleString(), color: "#4A90A4" },
-              { label: "Aggregate Risk", value: projectData.kpis.avg_risk.toFixed(3), color: "#1F4E79" },
+              { label: "Aggregate Risk", value: `${(projectData.kpis.avg_risk * 100).toFixed(0)}%`, color: "#1F4E79" },
             ]}
           />
 
@@ -203,7 +203,7 @@ export function ProjectsView() {
               Responsiveness: <strong className="text-[#1A1A1A]">{projectData.project_meta.stakeholder_responsiveness}</strong>
             </div>
             <div>
-              Risk mix: 🔴 {projectData.kpis.red} · 🟡 {projectData.kpis.yellow} · 🟢 {projectData.kpis.green} | Avg expected overrun:{" "}
+              Risk mix: RED {projectData.kpis.red} · YELLOW {projectData.kpis.yellow} · GREEN {projectData.kpis.green} | Avg expected overrun:{" "}
               <strong className="text-[#1F4E79]">{projectData.kpis.avg_overrun} days</strong>
             </div>
           </div>
@@ -229,7 +229,7 @@ export function ProjectsView() {
           <div className="bg-white rounded-xl border border-[#E2E8F0] shadow-2xs overflow-hidden my-4">
             <div className="p-4 border-b border-[#E2E8F0] flex items-center justify-between">
               <h3 className="text-sm font-bold text-[#1F4E79]">Parcels in Project</h3>
-              <span className="text-xs text-[#6B7280]">Click any row to expand details & What-if simulator</span>
+            
             </div>
 
             <div className="overflow-x-auto">
@@ -261,13 +261,13 @@ export function ProjectsView() {
                           <td className="p-3">
                             <RiskBadge level={parcel.risk_level} />
                           </td>
-                          <td className="p-3 text-right font-mono font-bold">{parcel.risk_score.toFixed(3)}</td>
+                          <td className="p-3 text-right font-mono font-bold">{(parcel.risk_score * 100).toFixed(0)}%</td>
                           <td className="p-3 text-right font-mono">{parcel.expected_overrun_days.toFixed(0)} d</td>
                           <td className="p-3 text-[#6B7280]">{parcel.current_stage || "—"}</td>
                           <td className="p-3 text-right font-mono text-[#C62828]">
                             {parcel.overrun_while_ongoing_days ? `${parcel.overrun_while_ongoing_days.toFixed(0)} d` : "—"}
                           </td>
-                          <td className="p-3 text-center">{parcel.court_stay === 1 ? "⚠️ Yes" : "No"}</td>
+                          <td className="p-3 text-center">{parcel.court_stay === 1 ? "Yes" : "No"}</td>
                           <td className="p-3 capitalize">{parcel.compensation_status}</td>
                         </tr>
 

@@ -40,8 +40,8 @@ export function CompareView() {
 
   const kpis = sa && sb
     ? [
-        { label: `${sa.entity} Avg Risk`, value: sa.risk.toFixed(3), color: "#1F4E79" },
-        { label: `${sb.entity} Avg Risk`, value: sb.risk.toFixed(3), color: "#4A90A4" },
+        { label: `${sa.entity} Avg Risk`, value: `${(sa.risk * 100).toFixed(0)}%`, color: "#1F4E79" },
+        { label: `${sb.entity} Avg Risk`, value: `${(sb.risk * 100).toFixed(0)}%`, color: "#4A90A4" },
         { label: "Parcels (A / B)", value: `${sa.n} / ${sb.n}`, color: "#1F4E79" },
         { label: "Avg Overrun (A / B)", value: `${sa.overrun.toFixed(0)}d / ${sb.overrun.toFixed(0)}d`, color: "#4A90A4" },
       ]
