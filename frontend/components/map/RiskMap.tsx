@@ -96,11 +96,11 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
   const activeCount = pointProjects.length + linearProjects.length;
 
   return (
-    <div className="h-[550px] w-full rounded-xl overflow-hidden border border-[#E2E8F0] shadow-2xs relative z-0">
+    <div className="h-[550px] w-full rounded-xl overflow-hidden border border-[var(--border)] shadow-2xs relative z-0">
       
       {/* Floating Risk Filter Bar */}
-      <div className="absolute top-3 left-14 z-[1000] bg-white/95 backdrop-blur-md px-3 py-2 rounded-lg border border-[#E2E8F0] shadow-md flex items-center space-x-2 text-[12px] font-medium flex-wrap gap-y-1">
-        <div className="flex items-center text-[#1F4E79] pr-2 border-r border-slate-200">
+      <div className="absolute top-3 left-14 z-[1000] bg-[var(--bg-card)]/95 backdrop-blur-md px-3 py-2 rounded-lg border border-[var(--border)] shadow-md flex items-center space-x-2 text-[12px] font-medium flex-wrap gap-y-1 transition-colors">
+        <div className="flex items-center text-[var(--navy)] pr-2 border-r border-[var(--border)]">
           <span className="font-bold">Filter Risk ({activeCount})</span>
         </div>
         
@@ -108,7 +108,7 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
         <select
           value={riskFilter}
           onChange={(e) => setRiskFilter(e.target.value as RiskFilterOption)}
-          className="bg-white border border-[#E2E8F0] text-[#1F4E79] font-bold text-[11px] rounded-md px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[#1F4E79]"
+          className="bg-[var(--bg-surface)] border border-[var(--border)] text-[var(--navy)] font-bold text-[11px] rounded-md px-2 py-1 focus:outline-none focus:ring-1 focus:ring-[var(--navy)]"
         >
           <option value="ALL">All Projects</option>
           <option value="HIGH">Red Only (&gt;70%)</option>
@@ -120,8 +120,8 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
         <div className="hidden sm:flex items-center space-x-1.5 pl-1">
           <button
             onClick={() => setRiskFilter("ALL")}
-            className={`px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
-              riskFilter === "ALL" ? "bg-slate-700 text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
+            className={`px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
+              riskFilter === "ALL" ? "bg-[#1F4E79] text-white shadow-xs" : "text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)]"
             }`}
           >
             All
@@ -129,8 +129,8 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
           
           <button
             onClick={() => setRiskFilter("HIGH")}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
-              riskFilter === "HIGH" ? "bg-[#DC2626] text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
+              riskFilter === "HIGH" ? "bg-[#DC2626] text-white shadow-xs" : "text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)]"
             }`}
           >
             <span className={`w-2 h-2 rounded-full ${riskFilter === "HIGH" ? "bg-white" : "bg-[#DC2626]"}`} />
@@ -139,8 +139,8 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
           
           <button
             onClick={() => setRiskFilter("MODERATE")}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
-              riskFilter === "MODERATE" ? "bg-[#D97706] text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
+              riskFilter === "MODERATE" ? "bg-[#D97706] text-white shadow-xs" : "text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)]"
             }`}
           >
             <span className={`w-2 h-2 rounded-full ${riskFilter === "MODERATE" ? "bg-white" : "bg-[#D97706]"}`} />
@@ -149,8 +149,8 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
           
           <button
             onClick={() => setRiskFilter("LOW")}
-            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all ${
-              riskFilter === "LOW" ? "bg-[#16A34A] text-white shadow-xs" : "text-slate-600 hover:bg-slate-100"
+            className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
+              riskFilter === "LOW" ? "bg-[#16A34A] text-white shadow-xs" : "text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)]"
             }`}
           >
             <span className={`w-2 h-2 rounded-full ${riskFilter === "LOW" ? "bg-white" : "bg-[#16A34A]"}`} />
@@ -160,19 +160,19 @@ export default function RiskMap({ projects, portfolio }: RiskMapProps) {
       </div>
 
       {/* Floating Tile Switcher */}
-      <div className="absolute top-3 right-3 z-[1000] bg-white/90 backdrop-blur-md p-1 rounded-lg border border-[#E2E8F0] shadow-xs flex space-x-1 text-[11px]">
+      <div className="absolute top-3 right-3 z-[1000] bg-[var(--bg-card)]/90 backdrop-blur-md p-1 rounded-lg border border-[var(--border)] shadow-xs flex space-x-1 text-[11px] transition-colors">
         <button
           onClick={() => setTileMode("light")}
-          className={`px-2.5 py-1 rounded-md font-bold transition-all ${
-            tileMode === "light" ? "bg-[#1F4E79] text-white shadow-2xs" : "text-slate-600 hover:bg-slate-100"
+          className={`px-2.5 py-1 rounded-md font-bold transition-all cursor-pointer ${
+            tileMode === "light" ? "bg-[#1F4E79] text-white shadow-2xs" : "text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)]"
           }`}
         >
           Light Map
         </button>
         <button
           onClick={() => setTileMode("satellite")}
-          className={`px-2.5 py-1 rounded-md font-bold transition-all ${
-            tileMode === "satellite" ? "bg-[#1F4E79] text-white shadow-2xs" : "text-slate-600 hover:bg-slate-100"
+          className={`px-2.5 py-1 rounded-md font-bold transition-all cursor-pointer ${
+            tileMode === "satellite" ? "bg-[#1F4E79] text-white shadow-2xs" : "text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)]"
           }`}
         >
           Satellite

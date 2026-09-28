@@ -155,41 +155,41 @@ export function ShapBarChart({
     .reverse();
 
   return (
-    <div className="bg-white p-5 rounded-xl border border-[#E2E8F0] shadow-2xs space-y-5">
+    <div className="bg-[var(--bg-card)] p-5 rounded-xl border border-[var(--border)] shadow-2xs space-y-5 transition-colors">
       {/* Title */}
-      <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
-        <h3 className="text-sm font-bold text-[#1F4E79] flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-[#1F4E79]" />
+      <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
+        <h3 className="text-sm font-bold text-[var(--navy)] flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-[var(--navy)]" />
           <span>{title}</span>
         </h3>
 
-        <span className="text-[11px] font-semibold text-[#6B7280] bg-[#F5F7FA] px-2.5 py-1 rounded-md border border-[#E2E8F0]">
+        <span className="text-[11px] font-semibold text-[var(--text-muted)] bg-[var(--bg-surface-hover)] px-2.5 py-1 rounded-md border border-[var(--border)]">
           ML Feature Importance (SHAP)
         </span>
       </div>
 
       {/* Human Readable SHAP Analysis Card */}
-      <div className="bg-[#F8FAFC] p-4 rounded-lg border border-[#E2E8F0] space-y-3">
+      <div className="bg-[var(--bg-surface)] p-4 rounded-lg border border-[var(--border)] space-y-3 transition-colors">
         {/* Executive Summary */}
         <div className="flex items-start gap-2">
-          <Info className="w-4 h-4 text-[#1F4E79] mt-0.5 shrink-0" />
+          <Info className="w-4 h-4 text-[var(--navy)] mt-0.5 shrink-0" />
 
           <div>
-            <h4 className="text-xs font-bold text-[#1F4E79] uppercase tracking-wider">
+            <h4 className="text-xs font-bold text-[var(--navy)] uppercase tracking-wider">
               Executive Risk Driver Summary
             </h4>
 
-            <p className="text-xs text-[#334155] mt-1 leading-relaxed">
+            <p className="text-xs text-[var(--text-primary)] mt-1 leading-relaxed">
               {topRiskAccelerators.length > 0 ? (
                 <>
                   The machine learning model identifies{" "}
-                  <strong className="text-[#1F4E79]">
+                  <strong className="text-[var(--navy)]">
                     {FEATURE_MAP[topRiskAccelerators[0][0]]?.label ||
                       topRiskAccelerators[0][0].replace(/_/g, " ")}
                   </strong>{" "}
                   as the primary factor driving delay risk for this
                   selection, followed by{" "}
-                  <strong className="text-[#1F4E79]">
+                  <strong className="text-[var(--navy)]">
                     {topRiskAccelerators[1]
                       ? FEATURE_MAP[topRiskAccelerators[1][0]]?.label ||
                         topRiskAccelerators[1][0].replace(/_/g, " ")
@@ -208,7 +208,7 @@ export function ShapBarChart({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
           {/* Risk Drivers */}
           <div className="space-y-2">
-            <h5 className="text-[11px] font-bold text-[#C62828] uppercase tracking-wider flex items-center gap-1.5">
+            <h5 className="text-[11px] font-bold text-[var(--color-loss)] uppercase tracking-wider flex items-center gap-1.5">
               <AlertTriangle className="w-3.5 h-3.5" />
               <span>Primary Risk Accelerators</span>
             </h5>
@@ -224,17 +224,17 @@ export function ShapBarChart({
                 return (
                   <li
                     key={featKey}
-                    className="bg-white p-2.5 rounded-md border border-red-100 shadow-2xs"
+                    className="bg-[var(--bg-card)] p-2.5 rounded-md border border-red-500/20 shadow-2xs"
                   >
-                    <div className="flex items-center justify-between text-xs font-semibold text-[#1A1A1A]">
+                    <div className="flex items-center justify-between text-xs font-semibold text-[var(--text-primary)]">
                       <span>{info.label}</span>
 
-                      <span className="font-mono text-[11px] font-bold text-[#C62828] bg-red-50 px-1.5 py-0.5 rounded">
+                      <span className="font-mono text-[11px] font-bold text-[var(--color-loss)] bg-red-500/10 px-1.5 py-0.5 rounded">
                         +{val.toFixed(2)} RISK IMPACT
                       </span>
                     </div>
 
-                    <p className="text-[11px] text-[#64748B] mt-1 leading-snug">
+                    <p className="text-[11px] text-[var(--text-muted)] mt-1 leading-snug">
                       {info.description(val)}
                     </p>
                   </li>
@@ -245,7 +245,7 @@ export function ShapBarChart({
 
           {/* Mitigating Factors */}
           <div className="space-y-2">
-            <h5 className="text-[11px] font-bold text-[#2E7D32] uppercase tracking-wider flex items-center gap-1.5">
+            <h5 className="text-[11px] font-bold text-[var(--color-profit)] uppercase tracking-wider flex items-center gap-1.5">
               <CheckCircle2 className="w-3.5 h-3.5" />
               <span>Mitigating Risk Stabilizers</span>
             </h5>
@@ -262,17 +262,17 @@ export function ShapBarChart({
                   return (
                     <li
                       key={featKey}
-                      className="bg-white p-2.5 rounded-md border border-emerald-100 shadow-2xs"
+                      className="bg-[var(--bg-card)] p-2.5 rounded-md border border-emerald-500/20 shadow-2xs"
                     >
-                      <div className="flex items-center justify-between text-xs font-semibold text-[#1A1A1A]">
+                      <div className="flex items-center justify-between text-xs font-semibold text-[var(--text-primary)]">
                         <span>{info.label}</span>
 
-                        <span className="font-mono text-[11px] font-bold text-[#2E7D32] bg-emerald-50 px-1.5 py-0.5 rounded">
+                        <span className="font-mono text-[11px] font-bold text-[var(--color-profit)] bg-emerald-500/10 px-1.5 py-0.5 rounded">
                           {val.toFixed(2)} RISK IMPACT
                         </span>
                       </div>
 
-                      <p className="text-[11px] text-[#64748B] mt-1 leading-snug">
+                      <p className="text-[11px] text-[var(--text-muted)] mt-1 leading-snug">
                         {info.description(val)}
                       </p>
                     </li>
@@ -280,7 +280,7 @@ export function ShapBarChart({
                 })}
               </ul>
             ) : (
-              <div className="bg-white p-2.5 rounded-md border border-[#E2E8F0] text-[11px] text-[#64748B]">
+              <div className="bg-[var(--bg-card)] p-2.5 rounded-md border border-[var(--border)] text-[11px] text-[var(--text-muted)]">
                 No significant mitigating factors detected for this
                 assessment.
               </div>
@@ -291,7 +291,7 @@ export function ShapBarChart({
 
       {/* SHAP Bar Chart */}
       <div>
-        <h4 className="text-xs font-bold text-[#64748B] uppercase tracking-wider mb-2">
+        <h4 className="text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-2">
           Delay Risk Factors(Factor-wise delay risk)
         </h4>
 
@@ -311,7 +311,7 @@ export function ShapBarChart({
                 type="number"
                 tick={{
                   fontSize: 11,
-                  fill: "#6B7280",
+                  fill: "var(--chart-text-color)",
                 }}
               />
 
@@ -321,11 +321,18 @@ export function ShapBarChart({
                 width={130}
                 tick={{
                   fontSize: 10,
-                  fill: "#6B7280",
+                  fill: "var(--chart-text-color)",
                 }}
               />
 
               <Tooltip
+                contentStyle={{
+                  backgroundColor: "var(--chart-tooltip-bg)",
+                  borderColor: "var(--border)",
+                  color: "var(--text-primary)",
+                  borderRadius: "8px",
+                  fontSize: "12px",
+                }}
                 formatter={(v: any) => [
                   Number(v).toFixed(2),
                   "SHAP impact",
@@ -334,7 +341,7 @@ export function ShapBarChart({
 
               <ReferenceLine
                 x={0}
-                stroke="#E2E8F0"
+                stroke="var(--border)"
               />
 
               <Bar
@@ -346,8 +353,8 @@ export function ShapBarChart({
                     key={`cell-${index}`}
                     fill={
                       entry.value >= 0
-                        ? COLORS.red
-                        : COLORS.steel
+                        ? "var(--color-loss)"
+                        : "var(--color-accent)"
                     }
                   />
                 ))}

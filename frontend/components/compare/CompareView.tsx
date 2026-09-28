@@ -55,24 +55,28 @@ export function CompareView() {
       />
 
       {/* Selectors */}
-      <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-2xs mb-4 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+      <div className="bg-[var(--bg-card)] p-4 rounded-xl border border-[var(--border)] shadow-2xs mb-4 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center transition-colors">
         <div>
-          <label className="block text-[11px] font-bold text-[#6B7280] uppercase tracking-wider mb-1">
+          <label className="block text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">
             Compare By
           </label>
           <div className="flex items-center gap-2 pt-0.5">
             <button
               onClick={() => setColMode("district")}
-              className={`flex-1 py-1.5 px-3 text-xs font-bold rounded-md transition-all ${
-                colMode === "district" ? "bg-[#1F4E79] text-white" : "bg-[#F5F7FA] text-[#6B7280] hover:bg-[#E2E8F0]"
+              className={`flex-1 py-1.5 px-3 text-xs font-bold rounded-md transition-all cursor-pointer ${
+                colMode === "district"
+                  ? "bg-[#1F4E79] text-white"
+                  : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border)]"
               }`}
             >
               Districts
             </button>
             <button
               onClick={() => setColMode("project_id")}
-              className={`flex-1 py-1.5 px-3 text-xs font-bold rounded-md transition-all ${
-                colMode === "project_id" ? "bg-[#1F4E79] text-white" : "bg-[#F5F7FA] text-[#6B7280] hover:bg-[#E2E8F0]"
+              className={`flex-1 py-1.5 px-3 text-xs font-bold rounded-md transition-all cursor-pointer ${
+                colMode === "project_id"
+                  ? "bg-[#1F4E79] text-white"
+                  : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border)]"
               }`}
             >
               Projects
@@ -81,13 +85,13 @@ export function CompareView() {
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold text-[#6B7280] uppercase tracking-wider mb-1">
+          <label className="block text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">
             Entity A
           </label>
           <select
             value={entityA}
             onChange={(e) => setEntityA(e.target.value)}
-            className="w-full text-xs font-bold text-[#1F4E79] bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-2.5 py-1.5"
+            className="w-full text-xs font-bold text-[var(--navy)] bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-[var(--navy)]"
           >
             {entities.map((e) => (
               <option key={e} value={e}>
@@ -98,13 +102,13 @@ export function CompareView() {
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold text-[#6B7280] uppercase tracking-wider mb-1">
+          <label className="block text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">
             Entity B
           </label>
           <select
             value={entityB}
             onChange={(e) => setEntityB(e.target.value)}
-            className="w-full text-xs font-bold text-[#C62828] bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-2.5 py-1.5"
+            className="w-full text-xs font-bold text-[var(--color-loss)] bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-[var(--navy)]"
           >
             {entities
               .filter((e) => e !== entityA)
@@ -124,7 +128,7 @@ export function CompareView() {
           <CompareRiskMixChart nameA={sa.entity} nameB={sb.entity} summaryA={sa} summaryB={sb} />
         </div>
       ) : (
-        <div className="p-8 bg-white rounded-xl text-center text-xs text-[#6B7280]">
+        <div className="p-8 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl text-center text-xs text-[var(--text-muted)]">
           Select two distinct entities above to generate comparative analytics.
         </div>
       )}

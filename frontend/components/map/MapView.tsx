@@ -41,9 +41,9 @@ export function MapView() {
         <RiskMapComponent projects={projects} portfolio={portfolio} />
 
         {/* Fallback Project Picker */}
-        <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-2xs flex items-center justify-between gap-4">
+        <div className="bg-[var(--bg-card)] p-4 rounded-xl border border-[var(--border)] shadow-2xs flex items-center justify-between gap-4 transition-colors">
           <div className="flex-1 max-w-md">
-            <label className="block text-[11px] font-bold text-[#6B7280] uppercase tracking-wider mb-1">
+            <label className="block text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">
               Or pick a project to open details
             </label>
             <select
@@ -53,7 +53,7 @@ export function MapView() {
                 }
               }}
               defaultValue=""
-              className="w-full text-xs font-bold text-[#1F4E79] bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-3 py-2"
+              className="w-full text-xs font-bold text-[var(--navy)] bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-[var(--navy)]"
             >
               <option value="" disabled>
                 Select a project...
@@ -65,7 +65,7 @@ export function MapView() {
               ))}
             </select>
           </div>
-          <span className="text-[11px] text-[#6B7280]">
+          <span className="text-[11px] text-[var(--text-muted)]">
             Leaflet OpenStreetMap server integration.
           </span>
         </div>

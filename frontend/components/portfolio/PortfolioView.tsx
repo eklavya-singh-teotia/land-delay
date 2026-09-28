@@ -128,9 +128,9 @@ export function PortfolioView() {
       />
 
       {/* Cascading Filter Bar */}
-      <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-2xs mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="bg-[var(--bg-card)] p-4 rounded-xl border border-[var(--border)] shadow-2xs mb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 transition-colors">
         <div>
-          <label className="block text-[11px] font-bold text-[#6B7280] uppercase tracking-wider mb-1">
+          <label className="block text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">
             State
           </label>
           <select
@@ -141,7 +141,7 @@ export function PortfolioView() {
               setTypeFilter("All");
               setCurrentPage(1);
             }}
-            className="w-full text-xs bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-2.5 py-1.5 font-medium text-[#1A1A1A] focus:outline-none focus:ring-1 focus:ring-[#1F4E79]"
+            className="w-full text-xs bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-2.5 py-1.5 font-medium text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--navy)]"
           >
             {states.map((s) => (
               <option key={s} value={s}>
@@ -152,7 +152,7 @@ export function PortfolioView() {
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold text-[#6B7280] uppercase tracking-wider mb-1">
+          <label className="block text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">
             District
           </label>
           <select
@@ -162,7 +162,7 @@ export function PortfolioView() {
               setTypeFilter("All");
               setCurrentPage(1);
             }}
-            className="w-full text-xs bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-2.5 py-1.5 font-medium text-[#1A1A1A] focus:outline-none focus:ring-1 focus:ring-[#1F4E79]"
+            className="w-full text-xs bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-2.5 py-1.5 font-medium text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--navy)]"
           >
             {districts.map((d) => (
               <option key={d} value={d}>
@@ -173,7 +173,7 @@ export function PortfolioView() {
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold text-[#6B7280] uppercase tracking-wider mb-1">
+          <label className="block text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">
             Project Type
           </label>
           <select
@@ -182,7 +182,7 @@ export function PortfolioView() {
               setTypeFilter(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full text-xs bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-2.5 py-1.5 font-medium text-[#1A1A1A] focus:outline-none focus:ring-1 focus:ring-[#1F4E79]"
+            className="w-full text-xs bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-2.5 py-1.5 font-medium text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--navy)]"
           >
             {types.map((t) => (
               <option key={t} value={t}>
@@ -193,7 +193,7 @@ export function PortfolioView() {
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold text-[#6B7280] uppercase tracking-wider mb-1">
+          <label className="block text-[11px] font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1">
             Risk Level
           </label>
           <div className="flex items-center gap-1.5 pt-0.5">
@@ -203,8 +203,10 @@ export function PortfolioView() {
                 <button
                   key={lvl}
                   onClick={() => handleRiskLevelToggle(lvl)}
-                  className={`text-[11px] font-bold px-2 py-1 rounded-md transition-all ${
-                    active ? "bg-[#1F4E79] text-white" : "bg-[#F5F7FA] text-[#6B7280] hover:bg-[#E2E8F0]"
+                  className={`text-[11px] font-bold px-2 py-1 rounded-md transition-all cursor-pointer ${
+                    active
+                      ? "bg-[#1F4E79] text-white"
+                      : "bg-[var(--bg-surface)] text-[var(--text-muted)] hover:bg-[var(--bg-surface-hover)] border border-[var(--border)]"
                   }`}
                 >
                   {lvl}
@@ -218,14 +220,14 @@ export function PortfolioView() {
       <KpiRow cards={kpis} />
 
       {/* Projects Table */}
-      <div className="bg-white rounded-xl border border-[#E2E8F0] shadow-2xs overflow-hidden my-4">
-        <div className="p-4 border-b border-[#E2E8F0] flex items-center justify-between">
-          <h2 className="text-sm font-bold text-[#1F4E79]">Projects</h2>
-          <span className="text-xs text-[#6B7280]">Click any row to open project details</span>
+      <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border)] shadow-2xs overflow-hidden my-4 transition-colors">
+        <div className="p-4 border-b border-[var(--border)] flex items-center justify-between">
+          <h2 className="text-sm font-bold text-[var(--navy)]">Projects</h2>
+          <span className="text-xs text-[var(--text-muted)]">Click any row to open project details</span>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
-            <thead className="bg-[#F5F7FA] text-[#6B7280] font-bold uppercase tracking-wider border-b border-[#E2E8F0]">
+            <thead className="bg-[var(--bg-surface)] text-[var(--text-muted)] font-bold uppercase tracking-wider border-b border-[var(--border)]">
               <tr>
                 <th className="p-3">Project ID</th>
                 <th className="p-3">Type</th>
@@ -239,24 +241,24 @@ export function PortfolioView() {
                 <th className="p-3 text-center">Level</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E2E8F0]">
+            <tbody className="divide-y divide-[var(--border)]">
               {paginatedProjects.map((row) => (
                 <tr
                   key={row.project_id}
                   onClick={() => router.push(`/projects?id=${encodeURIComponent(row.project_id)}`)}
-                  className="hover:bg-[#F5F7FA] cursor-pointer transition-colors"
+                  className="hover:bg-[var(--bg-surface-hover)] cursor-pointer transition-colors"
                 >
-                  <td className="p-3 font-semibold text-[#1F4E79]">{row.project_id}</td>
-                  <td className="p-3 text-[#1A1A1A]">{row.type}</td>
-                  <td className="p-3 text-[#6B7280]">{row.spatial}</td>
-                  <td className="p-3 text-[#1A1A1A]">{row.state}</td>
-                  <td className="p-3 text-[#1A1A1A]">{row.district}</td>
-                  <td className="p-3 text-right font-medium">{row.n_parcels}</td>
-                  <td className="p-3 text-right font-mono font-bold text-[#1F4E79]">
+                  <td className="p-3 font-semibold text-[var(--navy)]">{row.project_id}</td>
+                  <td className="p-3 text-[var(--text-primary)]">{row.type}</td>
+                  <td className="p-3 text-[var(--text-muted)]">{row.spatial}</td>
+                  <td className="p-3 text-[var(--text-primary)]">{row.state}</td>
+                  <td className="p-3 text-[var(--text-primary)]">{row.district}</td>
+                  <td className="p-3 text-right font-medium text-[var(--text-primary)]">{row.n_parcels}</td>
+                  <td className="p-3 text-right font-mono font-bold text-[var(--navy)]">
                     {(row.avg_risk * 100).toFixed(0)}%
                   </td>
-                  <td className="p-3 text-right font-bold text-[#C62828]">{row.red}</td>
-                  <td className="p-3 text-right font-mono text-[#6B7280]">
+                  <td className="p-3 text-right font-bold text-[var(--color-loss)]">{row.red}</td>
+                  <td className="p-3 text-right font-mono text-[var(--text-muted)]">
                     {row.avg_overrun.toFixed(0)} d
                   </td>
                   <td className="p-3 text-center">

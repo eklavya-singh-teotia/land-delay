@@ -7,19 +7,19 @@ export interface KpiItem {
   color?: string;
 }
 
-export function KpiCard({ label, value, delta, color = "#1F4E79" }: KpiItem) {
+export function KpiCard({ label, value, delta, color = "var(--navy)" }: KpiItem) {
   return (
     <div
-      className="bg-white rounded-xl p-3.5 border-l-4 border-y border-r border-[#E2E8F0] shadow-2xs flex flex-col justify-between"
+      className="bg-[var(--bg-card)] rounded-xl p-3.5 border-l-4 border-y border-r border-[var(--border)] shadow-2xs flex flex-col justify-between transition-colors"
       style={{ borderLeftColor: color }}
     >
-      <div className="text-[10px] font-bold text-[#6B7280] uppercase tracking-wider">
+      <div className="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-wider">
         {label}
       </div>
-      <div className="text-xl font-extrabold text-[#1F4E79] mt-1 leading-tight">
+      <div className="text-xl font-extrabold text-[var(--navy)] mt-1 leading-tight">
         {value}
       </div>
-      {delta && <div className="text-xs text-[#555] mt-0.5">{delta}</div>}
+      {delta && <div className="text-xs text-[var(--text-secondary)] mt-0.5">{delta}</div>}
     </div>
   );
 }
@@ -33,3 +33,4 @@ export function KpiRow({ cards }: { cards: KpiItem[] }) {
     </div>
   );
 }
+

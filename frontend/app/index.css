@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap');
+
+/*
+   LIGHT THEME (Default)
+ */
+:root,
+[data-theme="light"] {
+  --bg-dark: #eaedf1;
+  --bg-surface: #ffffff;
+  --bg-surface-hover: #f8fafc;
+  --bg-card: #ffffff;
+  --bg-card-border: #e2e8f0;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --color-profit: #059669;
+  --color-profit-bg: rgba(5, 150, 105, 0.1);
+  --color-loss: #e11d48;
+  --color-loss-bg: rgba(225, 29, 72, 0.1);
+  --color-warning: #d97706;
+  --color-warning-bg: rgba(217, 119, 6, 0.1);
+  --color-accent: #1F4E79;
+  --color-accent-bg: rgba(31, 78, 121, 0.12);
+  --color-purple: #7c3aed;
+
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  --shadow-card: 0 2px 12px -2px rgba(0, 0, 0, 0.08);
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Chart / Tooltip */
+  --chart-tooltip-bg: #ffffff;
+  --chart-text-color: #475569;
+  --chart-grid-color: rgba(0, 0, 0, 0.1);
+  --chart-axis-color: rgba(0, 0, 0, 0.18);
+
+  /* Scrollbar */
+  --scrollbar-thumb: #cbd5e1;
+  --scrollbar-thumb-hover: #94a3b8;
+
+  /* Legacy aliases for backward compatibility */
+  --navy: #1F4E79;
+  --steel: #4A90A4;
+  --green: #059669;
+  --yellow: #d97706;
+  --red: #e11d48;
+  --bg: #eaedf1;
+  --text: #0f172a;
+  --sidebar-bg: #ffffff;
+  --sidebar-width: 240px;
+  --border: #e2e8f0;
+  --muted: #64748b;
+}
+
+/* 
+   DARK THEME
+ */
+[data-theme="dark"] {
+  --bg-dark: #0b0f19;
+  --bg-surface: #141b3c;
+  --bg-surface-hover: #192354;
+  --bg-card: #182238;
+  --bg-card-border: #233052;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --color-profit: #10b981;
+  --color-profit-bg: rgba(16, 185, 129, 0.12);
+  --color-loss: #f43f5e;
+  --color-loss-bg: rgba(244, 63, 94, 0.12);
+  --color-warning: #fbbf24;
+  --color-warning-bg: rgba(251, 191, 36, 0.12);
+  --color-accent: #3b82f6;
+  --color-accent-bg: rgba(59, 130, 246, 0.18);
+  --color-purple: #8b5cf6;
+
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+
+  --chart-tooltip-bg: #182238;
+  --chart-text-color: #94a3b8;
+  --chart-grid-color: rgba(255, 255, 255, 0.12);
+  --chart-axis-color: rgba(255, 255, 255, 0.22);
+
+  /* Scrollbar */
+  --scrollbar-thumb: #233052;
+  --scrollbar-thumb-hover: #37496d;
+
+  /* Legacy aliases in dark mode */
+  --navy: #60a5fa;
+  --steel: #93c5fd;
+  --green: #10b981;
+  --yellow: #fbbf24;
+  --red: #f43f5e;
+  --bg: #0b0f19;
+  --text: #f1f5f9;
+  --sidebar-bg: #141b3c;
+  --sidebar-width: 240px;
+  --border: #233052;
+  --muted: #94a3b8;
+}
+
+/* Palette aliases keep the application theme adjustable from one small set of tokens. */
+:root,
+[data-theme="dark"],
+[data-theme="light"] {
+  --color-background: var(--bg-dark);
+  --color-surface: var(--bg-surface);
+  --color-surface-secondary: var(--bg-card);
+  --color-primary: var(--color-accent);
+  --color-success: var(--color-profit);
+  --color-danger: var(--color-loss);
+  --color-text: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-sidebar-active: var(--color-accent-bg);
+  --layout-radius: 22px;
+  --layout-shadow: 0 12px 28px -16px rgba(0, 0, 0, 0.55);
+}
+
+/* Base custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}

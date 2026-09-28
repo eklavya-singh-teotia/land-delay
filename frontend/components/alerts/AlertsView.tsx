@@ -25,54 +25,54 @@ export function AlertsView() {
       />
 
       {/* Summary Band */}
-      <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-2xs flex items-center gap-3">
-        <div className="p-2.5 bg-[#C62828]/10 text-[#C62828] rounded-lg">
+      <div className="bg-[var(--bg-card)] p-4 rounded-xl border border-[var(--border)] shadow-2xs flex items-center gap-3 transition-colors">
+        <div className="p-2.5 bg-red-500/10 text-[var(--color-loss)] rounded-lg">
           <AlertCircle className="w-5 h-5" />
         </div>
         <div>
-          <h2 className="text-sm font-bold text-[#1F4E79]">
+          <h2 className="text-sm font-bold text-[var(--navy)]">
             {data.total_alerts} active alerts across {data.unique_parcels} parcels
           </h2>
-          <p className="text-xs text-[#6B7280]">
+          <p className="text-xs text-[var(--text-muted)]">
             Automated multi-channel broadcast logs for District Officers and Administrators
           </p>
         </div>
       </div>
 
       {/* Alerts Table */}
-      <div className="bg-white rounded-xl border border-[#E2E8F0] shadow-2xs overflow-hidden">
-        <div className="p-4 border-b border-[#E2E8F0]">
-          <h3 className="text-xs font-bold text-[#1F4E79] uppercase tracking-wider">
+      <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border)] shadow-2xs overflow-hidden transition-colors">
+        <div className="p-4 border-b border-[var(--border)]">
+          <h3 className="text-xs font-bold text-[var(--navy)] uppercase tracking-wider">
             Active Warning Alerts
           </h3>
         </div>
         <div className="overflow-x-auto max-h-96">
           <table className="w-full text-xs text-left">
-            <thead className="bg-[#F5F7FA] text-[#6B7280] font-bold uppercase tracking-wider sticky top-0 border-b border-[#E2E8F0]">
+            <thead className="bg-[var(--bg-surface)] text-[var(--text-muted)] font-bold uppercase tracking-wider sticky top-0 border-b border-[var(--border)]">
               <tr>
                 <th className="p-3">Parcel ID</th>
                 <th className="p-3">Alert Type</th>
                 <th className="p-3">Detail</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E2E8F0]">
+            <tbody className="divide-y divide-[var(--border)]">
               {data.alerts.map((item, i) => (
-                <tr key={i} className="hover:bg-[#F5F7FA]">
-                  <td className="p-3 font-semibold text-[#1F4E79]">{item.parcel_id}</td>
+                <tr key={i} className="hover:bg-[var(--bg-surface-hover)]">
+                  <td className="p-3 font-semibold text-[var(--navy)]">{item.parcel_id}</td>
                   <td className="p-3">
                     <span
                       className={`inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase ${
                         item.alert_type === "high-risk" || item.alert_type === "court-stay"
-                          ? "bg-[#C62828] text-white"
+                          ? "bg-[var(--color-loss)] text-white"
                           : item.alert_type === "overrun-while-ongoing"
-                          ? "bg-[#E8A33D] text-white"
-                          : "bg-[#4A90A4] text-white"
+                          ? "bg-[var(--color-warning)] text-white"
+                          : "bg-[var(--steel)] text-white"
                       }`}
                     >
                       {item.alert_type}
                     </span>
                   </td>
-                  <td className="p-3 text-[#1A1A1A]">{item.detail}</td>
+                  <td className="p-3 text-[var(--text-primary)]">{item.detail}</td>
                 </tr>
               ))}
             </tbody>
@@ -81,16 +81,16 @@ export function AlertsView() {
       </div>
 
       {/* Notification Broadcast Log */}
-      <div className="bg-white rounded-xl border border-[#E2E8F0] shadow-2xs overflow-hidden">
-        <div className="p-4 border-b border-[#E2E8F0] flex items-center justify-between">
-          <h3 className="text-xs font-bold text-[#1F4E79] uppercase tracking-wider flex items-center gap-1.5">
+      <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border)] shadow-2xs overflow-hidden transition-colors">
+        <div className="p-4 border-b border-[var(--border)] flex items-center justify-between">
+          <h3 className="text-xs font-bold text-[var(--navy)] uppercase tracking-wider flex items-center gap-1.5">
             <Send className="w-3.5 h-3.5 text-[#4A90A4]" />
             Notification Broadcast Log (SMS / Email / Push)
           </h3>
         </div>
         <div className="overflow-x-auto max-h-80">
           <table className="w-full text-xs text-left">
-            <thead className="bg-[#F5F7FA] text-[#6B7280] font-bold uppercase tracking-wider sticky top-0 border-b border-[#E2E8F0]">
+            <thead className="bg-[var(--bg-surface)] text-[var(--text-muted)] font-bold uppercase tracking-wider sticky top-0 border-b border-[var(--border)]">
               <tr>
                 <th className="p-3">Channel</th>
                 <th className="p-3">Recipient</th>
@@ -99,14 +99,14 @@ export function AlertsView() {
                 <th className="p-3">Message</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#E2E8F0]">
+            <tbody className="divide-y divide-[var(--border)]">
               {data.notifications.map((log, i) => (
-                <tr key={i} className="hover:bg-[#F5F7FA]">
-                  <td className="p-3 font-semibold text-[#4A90A4]">{log.channel}</td>
-                  <td className="p-3 font-medium text-[#1A1A1A]">{log.recipient}</td>
-                  <td className="p-3 font-mono text-[#1F4E79]">{log.parcel_id}</td>
-                  <td className="p-3 capitalize text-[#6B7280]">{log.alert}</td>
-                  <td className="p-3 text-[#1A1A1A] font-mono text-[11px]">{log.message}</td>
+                <tr key={i} className="hover:bg-[var(--bg-surface-hover)]">
+                  <td className="p-3 font-semibold text-[var(--steel)]">{log.channel}</td>
+                  <td className="p-3 font-medium text-[var(--text-primary)]">{log.recipient}</td>
+                  <td className="p-3 font-mono text-[var(--navy)]">{log.parcel_id}</td>
+                  <td className="p-3 capitalize text-[var(--text-muted)]">{log.alert}</td>
+                  <td className="p-3 text-[var(--text-primary)] font-mono text-[11px]">{log.message}</td>
                 </tr>
               ))}
             </tbody>

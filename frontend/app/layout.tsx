@@ -3,6 +3,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { QueryProvider } from "@/components/providers/QueryProvider";
+import { ThemeSync } from "@/components/providers/ThemeSync";
 
 export const metadata: Metadata = {
   title: "BhoomiSetu — Land Acquisition Delay Predictor",
@@ -15,8 +16,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="h-full" suppressHydrationWarning>
-      <body className="h-full bg-[#F5F7FA] text-[#1A1A1A] antialiased" suppressHydrationWarning>
+    <html lang="en" className="h-full" data-theme="light" suppressHydrationWarning>
+      <body className="h-full antialiased" suppressHydrationWarning>
+        <ThemeSync />
         <QueryProvider>
           <Navbar />
           <Sidebar />

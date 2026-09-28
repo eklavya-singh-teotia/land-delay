@@ -2,8 +2,15 @@
 
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import { COLORS } from "@/lib/colors";
 import { CompareEntitySummary, Stage } from "@/lib/types";
+
+const tooltipStyle = {
+  backgroundColor: "var(--chart-tooltip-bg)",
+  borderColor: "var(--border)",
+  color: "var(--text-primary)",
+  borderRadius: "8px",
+  fontSize: "12px",
+};
 
 export function CompareStageChart({
   nameA,
@@ -27,19 +34,19 @@ export function CompareStageChart({
   }));
 
   return (
-    <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-2xs my-4">
-      <h3 className="text-sm font-bold text-[#1F4E79] mb-3">
+    <div className="bg-[var(--bg-card)] p-4 rounded-xl border border-[var(--border)] shadow-2xs my-4 transition-colors">
+      <h3 className="text-sm font-bold text-[var(--navy)] mb-3">
         Stage delay probability comparison
       </h3>
       <div className="h-64 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 15, right: 10, left: -10, bottom: 0 }}>
-            <XAxis dataKey="stage" tick={{ fontSize: 11, fill: "#6B7280" }} />
-            <YAxis domain={[0, 1]} tickFormatter={(v) => `${(v * 100).toFixed(0)}%`} tick={{ fontSize: 11, fill: "#6B7280" }} />
-            <Tooltip formatter={(v: any) => [`${(Number(v) * 100).toFixed(1)}%`]} />
-            <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px" }} />
-            <Bar dataKey={nameA} fill={COLORS.navy} radius={[4, 4, 0, 0]} />
-            <Bar dataKey={nameB} fill={COLORS.red} radius={[4, 4, 0, 0]} />
+            <XAxis dataKey="stage" tick={{ fontSize: 11, fill: "var(--chart-text-color)" }} />
+            <YAxis domain={[0, 1]} tickFormatter={(v) => `${(v * 100).toFixed(0)}%`} tick={{ fontSize: 11, fill: "var(--chart-text-color)" }} />
+            <Tooltip contentStyle={tooltipStyle} formatter={(v: any) => [`${(Number(v) * 100).toFixed(1)}%`]} />
+            <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px", color: "var(--text-secondary)" }} />
+            <Bar dataKey={nameA} fill="var(--color-accent)" radius={[4, 4, 0, 0]} />
+            <Bar dataKey={nameB} fill="var(--color-loss)" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
@@ -65,22 +72,23 @@ export function CompareRiskMixChart({
   ];
 
   return (
-    <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-2xs my-4">
-      <h3 className="text-sm font-bold text-[#1F4E79] mb-3">
+    <div className="bg-[var(--bg-card)] p-4 rounded-xl border border-[var(--border)] shadow-2xs my-4 transition-colors">
+      <h3 className="text-sm font-bold text-[var(--navy)] mb-3">
         Risk level distribution (parcels count)
       </h3>
       <div className="h-60 w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 15, right: 10, left: -10, bottom: 0 }}>
-            <XAxis dataKey="level" tick={{ fontSize: 11, fill: "#6B7280" }} />
-            <YAxis tick={{ fontSize: 11, fill: "#6B7280" }} />
-            <Tooltip />
-            <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px" }} />
-            <Bar dataKey={nameA} fill={COLORS.steel} radius={[4, 4, 0, 0]} />
-            <Bar dataKey={nameB} fill={COLORS.orange} radius={[4, 4, 0, 0]} />
+            <XAxis dataKey="level" tick={{ fontSize: 11, fill: "var(--chart-text-color)" }} />
+            <YAxis tick={{ fontSize: 11, fill: "var(--chart-text-color)" }} />
+            <Tooltip contentStyle={tooltipStyle} />
+            <Legend wrapperStyle={{ fontSize: "12px", paddingTop: "10px", color: "var(--text-secondary)" }} />
+            <Bar dataKey={nameA} fill="var(--steel)" radius={[4, 4, 0, 0]} />
+            <Bar dataKey={nameB} fill="var(--color-warning)" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>
     </div>
   );
 }
+

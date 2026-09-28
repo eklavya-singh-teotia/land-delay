@@ -61,13 +61,13 @@ export function ParcelPanel({ parcelId }: { parcelId: string }) {
   }));
 
   return (
-    <div className="bg-[#F5F7FA] p-5 rounded-xl border border-[#E2E8F0] my-3 space-y-4">
-      <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+    <div className="bg-[var(--bg-surface)] p-5 rounded-xl border border-[var(--border)] my-3 space-y-4 transition-colors">
+      <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
         <div className="flex items-center gap-3">
-          <span className="font-bold text-[#1F4E79] text-base">Parcel: {parcelId}</span>
+          <span className="font-bold text-[var(--navy)] text-base">Parcel: {parcelId}</span>
           <RiskBadge level={current.risk_level} />
         </div>
-        <span className="text-xs text-[#6B7280]">Parcel Details & What-If Simulator</span>
+        <span className="text-xs text-[var(--text-muted)]">Parcel Details & What-If Simulator</span>
       </div>
 
       {/* KPIs */}
@@ -80,18 +80,18 @@ export function ParcelPanel({ parcelId }: { parcelId: string }) {
       </div>
 
       {/* Recommended Actions */}
-      <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-2xs">
-        <h4 className="text-xs font-bold text-[#1F4E79] uppercase tracking-wider mb-2">
+      <div className="bg-[var(--bg-card)] p-4 rounded-xl border border-[var(--border)] shadow-2xs transition-colors">
+        <h4 className="text-xs font-bold text-[var(--navy)] uppercase tracking-wider mb-2">
           Recommended Actions
         </h4>
-        <ul className="space-y-1.5 text-xs text-[#1A1A1A]">
+        <ul className="space-y-1.5 text-xs text-[var(--text-primary)]">
           {current.recommended_actions.map((act, i) => {
-            const badgeColor = act.priority_label === "high" ? "bg-[#C62828]" : act.priority_label === "medium" ? "bg-[#E8A33D]" : "bg-[#2E7D32]";
+            const badgeColor = act.priority_label === "high" ? "bg-[var(--color-loss)]" : act.priority_label === "medium" ? "bg-[var(--color-warning)]" : "bg-[var(--color-profit)]";
             return (
               <li key={i} className="flex items-start gap-2">
                 <span className={`text-[9px] font-bold text-white uppercase px-1.5 py-0.5 rounded ${badgeColor}`}>{act.priority_label}</span>
                 <span>
-                  <strong className="text-[#1F4E79]">{act.factor}</strong> — {act.action}
+                  <strong className="text-[var(--navy)]">{act.factor}</strong> — {act.action}
                 </span>
               </li>
             );
@@ -100,17 +100,17 @@ export function ParcelPanel({ parcelId }: { parcelId: string }) {
       </div>
 
       {/* What-if Simulator */}
-      <div className="bg-white p-4 rounded-xl border border-[#E2E8F0] shadow-2xs">
-        <h4 className="text-xs font-bold text-[#1F4E79] uppercase tracking-wider mb-3">
+      <div className="bg-[var(--bg-card)] p-4 rounded-xl border border-[var(--border)] shadow-2xs transition-colors">
+        <h4 className="text-xs font-bold text-[var(--navy)] uppercase tracking-wider mb-3">
           What-if Simulator
         </h4>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 items-end">
           <div>
-            <label className="block text-xs font-medium text-[#6B7280] mb-1">Court Stay</label>
+            <label className="block text-xs font-medium text-[var(--text-muted)] mb-1">Court Stay</label>
             <select
               value={currentStayVal}
               onChange={(e) => setCourtStay(Number(e.target.value))}
-              className="w-full text-xs bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-2.5 py-1.5 text-[#1A1A1A]"
+              className="w-full text-xs bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-2.5 py-1.5 text-[var(--text-primary)]"
             >
               <option value={0}>No (0)</option>
               <option value={1}>Yes (1)</option>
@@ -118,11 +118,11 @@ export function ParcelPanel({ parcelId }: { parcelId: string }) {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-[#6B7280] mb-1">Compensation Status</label>
+            <label className="block text-xs font-medium text-[var(--text-muted)] mb-1">Compensation Status</label>
             <select
               value={currentCompVal}
               onChange={(e) => setCompStatus(e.target.value)}
-              className="w-full text-xs bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-2.5 py-1.5 text-[#1A1A1A]"
+              className="w-full text-xs bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-2.5 py-1.5 text-[var(--text-primary)]"
             >
               <option value="paid">Paid</option>
               <option value="partial">Partial</option>
@@ -132,7 +132,7 @@ export function ParcelPanel({ parcelId }: { parcelId: string }) {
         </div>
 
         {isWhatIfActive && (
-          <div className="mt-3 p-2.5 bg-[#EBF2F8] rounded-md text-xs font-medium text-[#1F4E79] flex items-center justify-between">
+          <div className="mt-3 p-2.5 bg-[var(--bg-surface-hover)] border border-[var(--border)] rounded-md text-xs font-medium text-[var(--navy)] flex items-center justify-between">
             <span>
               Simulated Level: <strong>{baseline.risk_level}</strong> → <strong>{current.risk_level}</strong>
             </span>

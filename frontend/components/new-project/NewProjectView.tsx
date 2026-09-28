@@ -95,18 +95,18 @@ export function NewProjectView() {
 
       <div className="space-y-6 max-w-4xl">
         {/* Form Card */}
-        <div className="bg-white p-6 rounded-xl border border-[#E2E8F0] shadow-2xs space-y-6">
+        <div className="bg-[var(--bg-card)] p-6 rounded-xl border border-[var(--border)] shadow-2xs space-y-6 transition-colors">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Project Details */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-bold text-[#1F4E79] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[var(--navy)] uppercase tracking-wider mb-1.5">
                   Project Type
                 </label>
                 <select
                   value={projectType}
                   onChange={(e) => setProjectType(e.target.value)}
-                  className="w-full text-xs bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-3 py-2 text-[#1A1A1A] font-semibold"
+                  className="w-full text-xs bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-3 py-2 text-[var(--text-primary)] font-semibold"
                 >
                   <option value="road">Road (RDH)</option>
                   <option value="rail">Rail (RLY)</option>
@@ -117,13 +117,13 @@ export function NewProjectView() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#1F4E79] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[var(--navy)] uppercase tracking-wider mb-1.5">
                   Spatial Type
                 </label>
                 <select
                   value={spatialType}
                   onChange={(e) => setSpatialType(e.target.value)}
-                  className="w-full text-xs bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-3 py-2 text-[#1A1A1A] font-semibold"
+                  className="w-full text-xs bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-3 py-2 text-[var(--text-primary)] font-semibold"
                 >
                   <option value="linear">Linear (Corridor)</option>
                   <option value="point">Point (Localized)</option>
@@ -131,7 +131,7 @@ export function NewProjectView() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-[#1F4E79] uppercase tracking-wider mb-1.5">
+                <label className="block text-xs font-bold text-[var(--navy)] uppercase tracking-wider mb-1.5">
                   Affected Families (DPR)
                 </label>
                 <input
@@ -140,36 +140,36 @@ export function NewProjectView() {
                   max="50000"
                   value={affectedFamilies}
                   onChange={(e) => setAffectedFamilies(Number(e.target.value))}
-                  className="w-full text-xs bg-[#F5F7FA] border border-[#E2E8F0] rounded-md px-3 py-2 text-[#1A1A1A] font-semibold"
+                  className="w-full text-xs bg-[var(--bg-surface)] border border-[var(--border)] rounded-md px-3 py-2 text-[var(--text-primary)] font-semibold"
                 />
               </div>
             </div>
 
             {/* Parcel CSV Dropzone */}
             <div>
-              <label className="block text-xs font-bold text-[#1F4E79] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-[var(--navy)] uppercase tracking-wider mb-1.5">
                 Upload Parcel CSV or Drag & Drop File
               </label>
               <div
                 {...getRootProps()}
                 className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all ${
                   isDragActive
-                    ? "border-[#1F4E79] bg-[#EBF2F8]"
-                    : "border-[#E2E8F0] bg-[#F5F7FA] hover:bg-[#EBF2F8]/50"
+                    ? "border-[var(--navy)] bg-[var(--bg-surface-hover)]"
+                    : "border-[var(--border)] bg-[var(--bg-surface)] hover:bg-[var(--bg-surface-hover)]"
                 }`}
               >
                 <input {...getInputProps()} />
                 <Upload className="w-8 h-8 mx-auto text-[#4A90A4] mb-2" />
-                <p className="text-xs font-semibold text-[#1F4E79]">
+                <p className="text-xs font-semibold text-[var(--navy)]">
                   Drag and drop your parcel CSV file here, or click to browse
                 </p>
-                <p className="text-[11px] text-[#6B7280] mt-1">Accepts .csv or .txt files containing parcel IDs</p>
+                <p className="text-[11px] text-[var(--text-muted)] mt-1">Accepts .csv or .txt files containing parcel IDs</p>
               </div>
             </div>
 
             {/* Alternative Manual Text Area */}
             <div>
-              <label className="block text-xs font-bold text-[#6B7280] uppercase tracking-wider mb-1.5">
+              <label className="block text-xs font-bold text-[var(--text-muted)] uppercase tracking-wider mb-1.5">
                 Or paste parcel IDs (comma or newline separated)
               </label>
               <textarea
@@ -177,20 +177,20 @@ export function NewProjectView() {
                 value={rawInput}
                 onChange={handleTextChange}
                 placeholder="e.g. HP-KNG-0001-0123, HP-KNG-0001-0124, HP-KNG-0001-0125"
-                className="w-full text-xs font-mono bg-[#F5F7FA] border border-[#E2E8F0] rounded-md p-3 text-[#1A1A1A] focus:outline-none focus:ring-1 focus:ring-[#1F4E79]"
+                className="w-full text-xs font-mono bg-[var(--bg-surface)] border border-[var(--border)] rounded-md p-3 text-[var(--text-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--navy)]"
               />
             </div>
 
             {/* Parse Feedback Badge */}
             {parsedIds.length > 0 && (
-              <div className="flex items-center gap-2 p-3 bg-[#EBF2F8] text-[#1F4E79] rounded-lg text-xs font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-[#2E7D32]" />
+              <div className="flex items-center gap-2 p-3 bg-[var(--bg-surface-hover)] border border-[var(--border)] text-[var(--navy)] rounded-lg text-xs font-semibold">
+                <CheckCircle2 className="w-4 h-4 text-[var(--color-profit)]" />
                 <span>Successfully parsed {parsedIds.length} unique parcel IDs</span>
               </div>
             )}
 
             {errorMsg && (
-              <div className="flex items-center gap-2 p-3 bg-red-50 text-[#C62828] rounded-lg text-xs font-semibold">
+              <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 text-[var(--color-loss)] rounded-lg text-xs font-semibold">
                 <AlertCircle className="w-4 h-4" />
                 <span>{errorMsg}</span>
               </div>
@@ -202,7 +202,7 @@ export function NewProjectView() {
               disabled={loading || parsedIds.length === 0}
               className={`w-full py-3 rounded-lg text-xs font-bold text-white shadow-xs transition-all ${
                 loading || parsedIds.length === 0
-                  ? "bg-[#6B7280] cursor-not-allowed opacity-60"
+                  ? "bg-[var(--text-muted)] cursor-not-allowed opacity-60"
                   : "bg-[#1F4E79] hover:bg-[#1F4E79]/90 cursor-pointer"
               }`}
             >
@@ -213,15 +213,15 @@ export function NewProjectView() {
 
         {/* Instant Assessment Results & SHAP Analysis */}
         {assessmentResult && (
-          <div className="bg-white p-6 rounded-xl border border-[#2E7D32] shadow-sm space-y-4">
-            <div className="flex items-center justify-between border-b border-[#E2E8F0] pb-3">
+          <div className="bg-[var(--bg-card)] p-6 rounded-xl border border-emerald-500/30 shadow-sm space-y-4 transition-colors">
+            <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-5 h-5 text-[#2E7D32]" />
-                <h3 className="text-sm font-bold text-[#1F4E79]">
+                <CheckCircle2 className="w-5 h-5 text-[var(--color-profit)]" />
+                <h3 className="text-sm font-bold text-[var(--navy)]">
                   Assessment Created: {assessmentResult.project_id}
                 </h3>
               </div>
-              <span className="text-xs font-bold text-[#2E7D32] bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+              <span className="text-xs font-bold text-[var(--color-profit)] bg-emerald-500/10 px-2.5 py-1 rounded-full border border-emerald-500/20">
                 {assessmentResult.parcels_created} Parcels Scored
               </span>
             </div>
@@ -237,7 +237,7 @@ export function NewProjectView() {
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => router.push(`/projects?id=${encodeURIComponent(assessmentResult.project_id)}`)}
-                className="flex items-center gap-2 px-4 py-2 bg-[#1F4E79] text-white text-xs font-bold rounded-lg hover:bg-[#1F4E79]/90 transition-colors shadow-xs"
+                className="flex items-center gap-2 px-4 py-2 bg-[#1F4E79] text-white text-xs font-bold rounded-lg hover:bg-[#1F4E79]/90 transition-colors shadow-xs cursor-pointer"
               >
                 <span>View Full Project Dashboard</span>
                 <ArrowRight className="w-4 h-4" />
